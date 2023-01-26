@@ -13,6 +13,8 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 # disable the Sandbox mode.
 chrome_options.add_argument('--no-sandbox')
+# add language
+chrome_options.add_argument('--lang=en-US')
 
 wd = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
@@ -34,6 +36,14 @@ wd.execute_script("arguments[0].click();", search_button)
 
 title = wd.title
 assert title == "ASD - Wikipedia" or "Trastornos del espectro autista - Wikipedia, la enciclopedia libre"
+
+# Task 6: Fetch an Element Using Link Text
+anchor_element = wd.find_element(By.LINK_TEXT, value="Adaptive software development")
+# next_link = anchor_element.link
+wd.execute_script("arguments[0].click();", anchor_element)
+
+title = wd.title
+assert title == "Adaptive software development - Wikipedia"
 
 
 # driver.quit()
