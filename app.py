@@ -45,5 +45,15 @@ wd.execute_script("arguments[0].click();", anchor_element)
 title = wd.title
 assert title == "Adaptive software development - Wikipedia"
 
+# Task 7: Fetch Elements By a Tag Name
+p_tags = wd.find_element(by=By.CLASS_NAME, value="mw-parser-output").find_elements(by=By.TAG_NAME, value="p")
+print("the {} <p> tags are {}".format(len(p_tags), p_tags))
+
+# Task 8: Extract the Text from Elements
+text_lines = ''
+for p_tag in p_tags:
+    text_lines += p_tag.text
+
+print(text_lines)
 
 # driver.quit()
