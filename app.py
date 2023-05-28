@@ -3,6 +3,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+import re
 
 # TASK #1: Configure instance
 # Chrome options
@@ -56,4 +57,8 @@ for p_tag in p_tags:
 
 print(text_lines)
 
+# Task 9: Remove Stop Words from the Text
+cleanr = r"\[\d]"
+cleantext = re.sub(cleanr, '', text_lines)
+print("Task #9: clean text", cleantext)
 # driver.quit()
